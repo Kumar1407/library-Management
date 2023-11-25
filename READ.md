@@ -11,5 +11,5 @@ Run the **npm run start** to run the application
 -> Install the pgadmin
 -> Create the server with localhost
 -> Create the user name as postgres and password as Library@123
--> Create the database name with libary
+-> Create the database name with library
 -> Run the application to create tables

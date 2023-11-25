@@ -8,16 +8,20 @@ var bodyParser = require("body-parser");
 app = express();
 const { param } = require('express-validator');
 
-const passport =require('passport');
-require('./midddleware/passport')(passwort)
 
 require("./global_functions.js");
+require('./config/constants.js');
 models = require("./models/index.js");
+
+const passport = require('passport');
+require('./midddleware/passport')(passport);
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.json({ limit: 1024 * 1024 * 200 }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(passport.initialize());
 // support parsing of application/json type post data
 app.use(bodyParser.json({ limit: "200mb" }));
 //support parsing of application/x-www-form-urlencoded post data
@@ -52,14 +56,14 @@ app.use(function (req, res, next) {
 if (process.env.NODE_ENV && process.env.NODE_ENV == '.env.development') {
     // console.log("INFO - Development Environment Configuration Setup");
     require("dotenv").config({ path: path.join(__dirname, `/${process.env.NODE_ENV}`) });
-  }
-  else if (process.env.NODE_ENV && process.env.NODE_ENV == '.env.test') {
+}
+else if (process.env.NODE_ENV && process.env.NODE_ENV == '.env.test') {
     // console.log("INFO - Development Environment Configuration Setup");
     require("dotenv").config({ path: path.join(__dirname, `/${process.env.NODE_ENV}`) });
-  }
-  else {
+}
+else {
     require("dotenv").config();
-  }
+}
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -80,8 +84,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use( require('./controller/book/book.controller.js').router);
-app.use( require('./controller/user/patron.controller.js').router);
-app.use( require('./controller/user/user.controller.js').router);
+app.use('/book', require('./controller/book/book.controller.js').router);
+app.use('/patron', require('./controller/user/patron.controller.js').router);
+app.use('/user', require('./controller/user/user.controller.js').router);
 
 module.exports = app;
