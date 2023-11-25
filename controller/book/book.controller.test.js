@@ -25,7 +25,7 @@ describe('book Controller', () => {
         let res = mockResponse();
         req.body = { id: 1, title: digitalElectronic }
         book.cteate = jest.fn()
-            .mockRejectedValueOnce(new Error(Error))
+            .mockRejectedValueOnce(new Error('Error'))
             .mockRejectedValueOnce(Promise.resolve({ id: 1, title: digitalElectronic }))
         await
             bookController.createBook(req, res);
@@ -43,7 +43,7 @@ describe('book Controller', () => {
         let res = mockResponse();
         req.body = { id: 1 }
         book.update = jest.fn()
-            .mockRejectedValueOnce(new Error(Error))
+            .mockRejectedValueOnce(new Error('Error'))
             .mockRejectedValueOnce(Promise.resolve({ id: 1 }))
         await
             bookController.updateBook(req, res);
@@ -61,7 +61,7 @@ describe('book Controller', () => {
         let res = mockResponse();
         req.body = { id: 1 }
         book.destroy = jest.fn()
-            .mockRejectedValueOnce(new Error(Error))
+            .mockRejectedValueOnce(new Error('Error'))
             .mockRejectedValueOnce(Promise.resolve({ id: 1 }))
         await
             bookController.deleteBook(req, res);
@@ -79,7 +79,7 @@ describe('book Controller', () => {
         let res = mockResponse();
         req.body = { searchtest: digitalElectronic }
         book.findAll = jest.fn()
-            .mockRejectedValueOnce(new Error(Error))
+            .mockRejectedValueOnce(new Error('Error'))
             .mockRejectedValueOnce(Promise.resolve({ searchtest: digitalElectronic }))
         await
             bookController.searchBook(req, res);
