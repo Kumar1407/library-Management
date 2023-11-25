@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jest": "jest --runInBand --coverage --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
@@ -26,5 +27,14 @@
     "passport-jwt": "^4.0.1",
     "pg": "^8.11.1",
     "sequelize": "^6.32.1"
+  },
+  "devDependencies": {
+    "jest": "^29.6.3",
+    "jest-sonar-reporter": "^2.0.0"
+  },
+  "jestSonar": {
+    "reportPath": "reports",
+    "reportFile": "jest-report.xml",
+    "indent": 4
   }
 }
